@@ -47,8 +47,8 @@ app.post("/car", (request, response) => {
 });
 
 app.delete("/car/:id", (request, response) => {
-    /*const id = request.params.id;
-    console.log("delete car ran");
+    const id = request.params.id;
+    /*console.log("delete car ran");
     Car.findByIdAndDelete(id).then((deletedCar) => {
         if (deletedCar == null) {
             response.status(404).json({message: "not found"});
@@ -66,21 +66,20 @@ app.delete("/car/:id", (request, response) => {
             response.status(404).json({message: "not found"});
             return
         }
-        const deletingCar = json(car);
+        const deletedCar = car;
+        Todo.findByIdAndDelete(id, deletedCar).then((deletedCar) => {
+            if (deletedCar == null) {
+                res.status(404).json({message: "not found"});
+                return
+            }
+            response.json(deletedCar);
+        }).catch((err) => {
+            response.status(505).json(err);
+        });
     }).catch((err) => {
-        response.status(500).json(err);
+        response.status(506).json(err);
     });
 
-
-    Todo.findByIdAndDelete(id, deletingCar).then((deletedCar) => {
-        if (deletedTodo == null) {
-            res.status(404).json({message: "not found"});
-            return
-        }
-        res.json(deletingCar);
-    }).catch((err) => {
-        res.status(500).json(err);
-    });
 });
 
 app.put("/car", (request, response) => {
