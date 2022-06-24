@@ -13,27 +13,31 @@ function connect(user, password, host, port, db) {
     });
 }
 
-db.once("connecting", () => {
-    console.log("Connecting to MongoDB");
-});
+function setUpConnectionHandlers (callback) {
+    // run just once when connecting event is recieved
+    db.once("connecting", () => {
+        console.log("Connecting to MongoDB");
+    });
 
-db.once("connected", () => {
-    console.log("Connected to MongoDB");
-});
+    db.once("connected", () => {
+        console.log("Connected to MongoDB");
+    });
 
-db.once("open", () => {
-    console.log("Open Connection to MongoDB");
+    db.once("open", () => {
+        console.log("Open Connection to MongoDB");
 
-    callback();
-});
+        callback();
+    });
 
-db.once("error", () => {
-    console.log("Error connecting to MongoDB");
-});
+    db.once("error", () => {
+        console.log("Error connecting to MongoDB");
+    });
+}
 
 
 //export functions
 
 module.exports = {
-    connect: connect
+    connect: connect,
+    setUpConnectionHandlers: setUpConnectionHandlers
 }
