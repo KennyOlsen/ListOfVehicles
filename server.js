@@ -25,7 +25,7 @@ app.get("/cars", (request, response) => {
 app.get("/car/:id", (request, response) => {
     //takes id from directive to use
     const id = request.params.id;
-    console.log("get single todo ran");
+    console.log("get single car ran");
     Car.findById(id).then((car) => {
         if (car == null) {
             response.status(404).json({message: "not found"});
@@ -46,9 +46,41 @@ app.post("/car", (request, response) => {
     });
 });
 
-app.delete("/car", (request, response) => {
-    console.log("Delete car");
-    response.send("Delete car");
+app.delete("/car/:id", (request, response) => {
+    /*const id = request.params.id;
+    console.log("delete car ran");
+    Car.findByIdAndDelete(id).then((deletedCar) => {
+        if (deletedCar == null) {
+            response.status(404).json({message: "not found"});
+            return
+        }
+        //res.json(deletedCar);
+    }).catch((err) => {
+        response.status(504).json(err);
+    });*/
+
+
+
+    Car.findById(id).then((car) => {
+        if (car == null) {
+            response.status(404).json({message: "not found"});
+            return
+        }
+        const deletingCar = json(car);
+    }).catch((err) => {
+        response.status(500).json(err);
+    });
+
+
+    Todo.findByIdAndDelete(id, deletingCar).then((deletedCar) => {
+        if (deletedTodo == null) {
+            res.status(404).json({message: "not found"});
+            return
+        }
+        res.json(deletingCar);
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
 });
 
 app.put("/car", (request, response) => {
