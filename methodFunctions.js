@@ -2,7 +2,7 @@
 function templateCreation(car) {
     let driveType = 'AWD';
     let fuelType = 'gas';
-    let transmission = 'auto';
+    let transmission = '6spd auto';
     let mileage = 0;
     let bodyStyle = 'sedan';
     let exColor = 'black';
