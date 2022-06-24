@@ -12,6 +12,8 @@ const bp = require('body-parser');
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}))
 
+const Car = require("./car");
+
 
 app.get("/cars", (request, response) => {
     console.log("Get cars");
@@ -25,7 +27,12 @@ app.get("/car", (request, response) => {
 
 app.post("/car", (request, response) => {
     console.log("Post car");
-    response.send(methodFunctions.post(request.body));
+    vCar = templateCreation(car);
+    Car.create(vCar).then((car) => {
+        response.json(car);
+    }).catch((err) => {
+        response.status(500).json(err);
+    });
 });
 
 app.delete("/car", (request, response) => {
