@@ -7,6 +7,11 @@ app.use(cors());
 
 const methodFunctions = require("./methodFunctions");
 
+//Pulls in body-parser so requests aren't undefined
+const bp = require('body-parser');
+app.use(bp.json());
+app.use(bp.urlencoded({extended: true}))
+
 
 app.get("/cars", (request, response) => {
     console.log("Get cars");
@@ -20,7 +25,7 @@ app.get("/car", (request, response) => {
 
 app.post("/car", (request, response) => {
     console.log("Post car");
-    response.send(methodFunctions.post(request));
+    response.send(methodFunctions.post(request.body));
 });
 
 app.delete("/car", (request, response) => {

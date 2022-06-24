@@ -11,38 +11,49 @@ function templateCreation(car) {
     let model = '';
     let subModel = '';
 
-    if (!car.driveType) {
-        car['driveType'] = driveType;
+    if (car.driveType) {
+        driveType = car.driveType;
     }
-    if (!car.fuelType) {
-        car['fuelType'] = fuelType;
+    if (car.fuelType) {
+        fuelType = car.fuelType;
     }
-    if (!car.transmission) {
-        car['transmission'] = transmission;
+    if (car.transmission) {
+        transmission = car.transmission;
     }
-    if (!car.mileage) {
-        car['mileage'] = mileage;
+    if (car.mileage) {
+        mileage = car.mileage;
     }
-    if (!car.bodyStyle) {
-        car['bodyStyle'] = bodyStyle;
+    if (car.bodyStyle) {
+        bodyStyle = car.bodyStyle;
     }
-    if (!car.exColor) {
-        car['exColor'] = exColor;
+    if (car.exColor) {
+        exColor = car.exColor;
     }
-    if (!car.intColor) {
-        car['intColor'] = intColor;
+    if (car.intColor) {
+        intColor = car.intColor;
     }
-    if (!car.brand) {
-        car['brand'] = brand;
+    if (car.brand) {
+        brand = car.brand
     }
-    if (!car.model) {
-        car['model'] = model;
+    if (car.model) {
+        model = car.model
     }
-    if (!car.subModel) {
-        car['subModel'] = subModel;
+    if (car.subModel) {
+        subModel = car.subModel;
     }
 
-    return car
+    return {
+        'driveType': driveType,
+        'fuelType': fuelType,
+        'transmission': transmission,
+        'mileage': mileage,
+        'bodyStyle': bodyStyle,
+        'exColor': exColor,
+        'intColor': intColor,
+        'brand': brand,
+        'model': model,
+        'subModel': subModel
+    }
 }
 
 function post(car) {
