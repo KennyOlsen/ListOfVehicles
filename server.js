@@ -5,6 +5,8 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
+const methodFunctions = require("./methodFunctions");
+
 
 app.get("/cars", (request, response) => {
     console.log("Get cars");
@@ -18,7 +20,7 @@ app.get("/car", (request, response) => {
 
 app.post("/car", (request, response) => {
     console.log("Post car");
-    response.send("Post car");
+    response.send(methodFunctions.post(request));
 });
 
 app.delete("/car", (request, response) => {
