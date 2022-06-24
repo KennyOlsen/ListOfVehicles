@@ -27,7 +27,7 @@ app.get("/car", (request, response) => {
 
 app.post("/car", (request, response) => {
     console.log("Post car");
-    vCar = templateCreation(car);
+    let vCar = methodFunctions.post(request.body);
     Car.create(vCar).then((car) => {
         response.json(car);
     }).catch((err) => {

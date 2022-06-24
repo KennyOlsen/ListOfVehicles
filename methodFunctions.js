@@ -63,5 +63,5 @@ function post(car) {
 
 
 module.exports = {
-    post: post
+    post: post,
 };

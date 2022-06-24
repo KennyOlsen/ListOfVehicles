@@ -12,8 +12,8 @@ const carSchema = mongoose.Schema({
     brand: {type: String, default: ''},
     model: {type: String, default: ''},
     subModel: {type: String, default: ''}
-})
+});
 
-const car = mongoose.model("Car", carSchema);
+const Car = mongoose.model("Car", carSchema);
 
-module.exports = car;
+module.exports = Car;
