@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/KennyOlsen/ListOfVehicles#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "db": "^3.3.1",
     "express": "^4.18.1",
-    "mongodb": "^4.7.0"
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.0"
   }
 }

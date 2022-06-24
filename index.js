@@ -1,5 +1,9 @@
 const express = require('express');
-const app = express();
+const app = express();\
+
+//pulls in cors library and allows access across domains
+const cors = require("cors");
+app.use(cors());
 
 
 app.get("/cars", (request, response) => {
