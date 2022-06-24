@@ -5,8 +5,6 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
-const methodFunctions = require("./methodFunctions");
-
 //Pulls in body-parser so requests aren't undefined
 const bp = require('body-parser');
 app.use(bp.json());
@@ -16,19 +14,32 @@ const Car = require("./car");
 
 
 app.get("/cars", (request, response) => {
-    console.log("Get cars");
-    response.send("Get Cars");
+    console.log("get todos ran");
+    Car.find().then((cars) => {
+        response.json(cars);
+    }).catch((err) => {
+        response.status(500).json(err);
+    });
 });
 
-app.get("/car", (request, response) => {
-    console.log("Get car");
-    response.send("Get Car");
+app.get("/car/:id", (request, response) => {
+    //takes id from directive to use
+    const id = request.params.id;
+    console.log("get single todo ran");
+    Car.findById(id).then((car) => {
+        if (car == null) {
+            response.status(404).json({message: "not found"});
+            return
+        }
+        response.json(car);
+    }).catch((err) => {
+        response.status(500).json(err);
+    });
 });
 
 app.post("/car", (request, response) => {
     console.log("Post car");
-    let vCar = methodFunctions.post(request.body);
-    Car.create(vCar).then((car) => {
+    Car.create(request.body).then((car) => {
         response.json(car);
     }).catch((err) => {
         response.status(500).json(err);
